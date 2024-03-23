@@ -1,0 +1,104 @@
+<h3 class="text-center  mb-3 note text-uppercase" style="font-family: serif;font-weight: 700;font-size: 22px;" *ngIf="sharedMessage!=='BN'">
+    <em>Dashboard</em>
+</h3>
+<h3 class="text-center  mb-3 note text-uppercase" style="font-family: serif;font-weight: 700;font-size: 22px;" *ngIf="sharedMessage==='BN'">
+    <em>ড্যাশবোর্ড</em>
+</h3>
+<div class="container-fluid mb-5 mt-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary" *ngIf="sharedMessage!=='BN'">Total Revenue</p>
+                            <p class="mb-0 text-secondary" *ngIf="sharedMessage==='BN'">মোট আয়</p>
+                            <h4 class="my-1 text-info" *ngIf="sharedMessage!=='BN'">৳{{revenueBalance | number}}</h4>
+                            <h4 class="my-1 text-info" *ngIf="sharedMessage==='BN'">৳{{revenueBalance | banglaNumber}}</h4>
+                         
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
+                                class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-danger">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary" *ngIf="sharedMessage!=='BN'">Cash on Hands</p>
+                            <p class="mb-0 text-secondary" *ngIf="sharedMessage==='BN'">নগদ</p>
+                            <h4 class="my-1 text-danger" *ngIf="sharedMessage!=='BN'">৳{{cashBalance | number}}</h4>
+                            <h4 class="my-1 text-danger" *ngIf="sharedMessage==='BN'">৳{{cashBalance | banglaNumber}}</h4>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                class="fa fa-dollar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-success">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary" *ngIf="sharedMessage!=='BN'">Due Payment</p>
+                            <p class="mb-0 text-secondary" *ngIf="sharedMessage==='BN'">প্রাপ্য আয়</p>
+                            <h4 class="my-1 text-success" *ngIf="sharedMessage!=='BN'">৳{{receivableBalance | number}}</h4>
+                            <h4 class="my-1 text-success" *ngIf="sharedMessage==='BN'">৳{{receivableBalance | banglaNumber}}</h4>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
+                                class="fa fa-bar-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-warning">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary" *ngIf="sharedMessage!=='BN'">Total Debt</p>
+                            <p class="mb-0 text-secondary" *ngIf="sharedMessage=='BN'">প্রদেয় খরচ</p>
+                            <h4 class="my-1 text-warning" *ngIf="sharedMessage!=='BN'">৳{{loanBalance | number}}</h4>
+                            <h4 class="my-1 text-warning" *ngIf="sharedMessage==='BN'">৳{{loanBalance | banglaNumber}}</h4>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
+                                class="fa fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="mt-5">
+        <app-bar-chart></app-bar-chart>
+    </div>
+
+    <div class="mt-5">
+        <app-line-chart></app-line-chart>
+    </div>
+  
+
+
+
+    <div class="container mt-5">
+        <div class="col-lg-12 col-xl-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <h5 class="card-title mb-0" *ngIf="sharedMessage!=='BN'">Current Total Assets</h5>
+                    <h5 class="card-title mb-0" *ngIf="sharedMessage==='BN'">বর্তমান মোট সম্পদ</h5>
+                </div>
+                <div class="card-body">
+                    <app-doughnut></app-doughnut>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,210 @@
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bdSidebar" *ngIf="isLoggedIn">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <span class="fs-5 d-none d-sm-inline text-white" *ngIf="english">Menu</span>
+          <span class="fs-5 d-none d-sm-inline text-white" *ngIf="!english">তালিকা</span>
+        </a>
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+          <li class="nav-item">
+            <a [routerLink]="'/home'" class="nav-link align-middle px-0">
+              <i class="fa-solid fa-gauge" style="color: #f5f5f5;"></i>
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="english"> Dashboard</span>
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="!english"> ড্যাশবোর্ড</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="'/journalForm'" class="nav-link px-0 align-middle text-white">
+              <i class="fa-solid fa-feather" style="color: #ffffff;"></i>
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="english"> Add New Transaction</span>
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="!english"> নতুন লেনদেন অন্তর্ভুক্তকরণ</span>
+            </a>
+          </li>
+          <li>
+
+            <a [routerLink]="'/journalList'" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-list" style="color: #ffffff;"></i>
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="english"> Transaction List</span>
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="!english"> লেনদেনসমূহের তালিকা </span>
+
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="'/report'" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-database" style="color: #ffffff;"></i>
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="english"> Generate Report</span>
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="!english"> রিপোর্ট উৎপাদন</span>
+            </a>
+          </li>
+          <li>
+            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-table" style="color: #ffffff;"></i> <span
+                class="ms-1 d-none d-sm-inline text-white" *ngIf="english"> Ledger Accounts</span> 
+                <span
+                class="ms-1 d-none d-sm-inline text-white" *ngIf="!english"> খতিয়ান হিসাবসমূহ</span> 
+              </a>
+              
+
+
+            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+              <li class="w-100">
+                <a [routerLink]="'/cashAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Cash Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> নগদান হিসাব</span> 
+                  </a>
+              </li>
+
+              <li>
+                <a [routerLink]="'/equipmentAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Equipment Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> যন্ত্রপাতি হিসাব</span>
+                  </a>
+              </li>
+
+              <li>
+                <a [routerLink]="'/expenseAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Expense Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> ব্যয় হিসাব</span> 
+                  </a>
+              </li>
+              <li>
+                <a [routerLink]="'/capitalAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Owner's Capital Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> মালিকের মূলধন হিসাব</span>
+                  </a>
+              </li>
+              <li>
+                <a [routerLink]="'/drawingsAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Owner's Drawings Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> মালিকের উত্তোলন হিসাব</span>
+                  </a>
+              </li>
+              <li>
+                <a [routerLink]="'/payableAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Payable Account Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> প্রদেয় হিসাব</span> 
+                  </a>
+              </li>
+              <li>
+                <a [routerLink]="'/receivableAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Receivable Account Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> প্রাপ্য হিসাব</span>
+                  </a>
+              </li>
+              <li>
+                <a [routerLink]="'/revenueAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Revenue Account Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> আয় হিসাব</span> 
+                  </a>
+              </li>
+              <li>
+                <a [routerLink]="'/suppliesAccount'" class="nav-link px-0"><i class="fa-solid fa-check"
+                    style="color: #ffffff;"></i>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Supplies Account Ledger</span>
+                    <span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> সরবরাহ হিসাব</span> 
+                  </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-user" style="color: #ffffff;"></i> 
+              <span class="ms-1 d-none d-sm-inline text-white" *ngIf="english">
+                User Management</span> 
+                <span class="ms-1 d-none d-sm-inline text-white" *ngIf="!english">
+                  ব্যবহারকারী ব্যবস্থাপনা</span>
+              </a>
+
+
+            <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+              <li class="w-100">
+                <a [routerLink]="'/sign-up'" class="nav-link px-0"><i class="fa-regular fa-square-check"
+                    style="color: #ffffff;"></i><span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Create New
+                    User</span><span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> নতুন ব্যবহারকারী তৈরি করুন</span></a>
+              </li>
+
+              <li>
+                <a [routerLink]="'/userList'" class="nav-link px-0"><i class="fa-regular fa-square-check"
+                    style="color: #ffffff;"></i><span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> User
+                    List</span><span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> ব্যবহারকারী তালিকা</span></a>
+                    
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+              <i class="fa-solid fa-lightbulb" style="color: #ffffff;"></i> 
+              <span
+                class="ms-1 d-none d-sm-inline text-white" *ngIf="english">
+                Role Management</span> 
+                <span
+                class="ms-1 d-none d-sm-inline text-white" *ngIf="!english">
+                দায়িত্ব ব্যবস্থাপনা</span> 
+              </a>
+
+
+            <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
+              <li class="w-100">
+                <a [routerLink]="'/create-role'" class="nav-link px-0"><i class="fa-regular fa-square-check"
+                    style="color: #ffffff;"></i><span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Create New
+                    role</span><span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> নতুন ভূমিকা তৈরি করুন</span></a>
+              </li>
+
+              <li>
+                <a [routerLink]="'/roleList'" class="nav-link px-0"><i class="fa-regular fa-square-check"
+                    style="color: #ffffff;"></i><span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="english"> Role
+                    List</span><span class="d-none d-sm-inline" style="color: #ffffff;" *ngIf="!english"> ভূমিকা তালিকা</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown pb-4">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/1703228320287.jpg" alt="hugenerd" width="30" height="30" class="rounded-circle">
+            <span class="d-none d-sm-inline mx-1" *ngIf="english">Admin</span>
+            <span class="d-none d-sm-inline mx-1" *ngIf="!english">এডমিন</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+
+
+            <li><a class="dropdown-item" href="#" *ngIf="english">Profile</a></li>
+            <li><a class="dropdown-item" href="#" *ngIf="!english">প্রফাইল</a></li>
+       
+            <li><a class="dropdown-item btn" (click)="logOut()" *ngIf="english">Sign out</a></li>
+            <li><a class="dropdown-item btn" (click)="logOut()" *ngIf="!english">সাইন আউট</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isLoggedIn">
+        <div class="container-fluid">
+          <a id="navbar-brand" class="navbar-brand gradient-text text-uppercase" href="#"
+            style="font-family: 'Courier New', Courier, monospace;"><img src="assets/logo-removebg-preview.png"
+              alt="logo" height="60px" width="60px"><span *ngIf="english">Accounting Management System</span><span
+              *ngIf="!english">একাউন্টিং ম্যানেজমেন্ট সিস্টেম</span></a>
+          <div>
+            <div class="language-switch">
+              <span type="button" (click)="changeLanguage('BN')">বাংলা</span>
+              <span type="button" (click)="changeLanguage('EN')">ENGLISH</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

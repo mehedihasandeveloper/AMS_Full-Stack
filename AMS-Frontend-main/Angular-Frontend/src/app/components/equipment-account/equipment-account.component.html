@@ -1,0 +1,64 @@
+
+    <h3 class="text-center  mb-3 note text-uppercase" style="font-family: serif;font-weight: 700;font-size: 22px;"><span *ngIf="sharedMessage!=='BN'"><em>Equipment Ledger</em></span><span *ngIf="sharedMessage==='BN'"><em>যন্ত্রপাতি হিসাব</em></span></h3> 
+    <div class="container mt-3">
+        <form (ngSubmit)="onSearch()">
+            <div class="row">
+                <div  style="text-align: end;">
+                    <a href="javascript:void(0)" onclick="print()" rel="noopener" target="_blank" class="btn btn-default"><i
+                        class="fas fa-print"></i><span *ngIf="sharedMessage!=='BN'"> Print</span><span *ngIf="sharedMessage==='BN'"> প্রিন্ট</span></a> 
+                </div>
+                <div class="col-lg-2">
+                    
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedOption" (change)="onOptionChange($event)" name="searchBy">
+                        <option selected><span *ngIf="sharedMessage!=='BN'"> Search by</span><span *ngIf="sharedMessage==='BN'"> ধরণ নির্বাচন করুন</span></option>
+                        <option value="1"><span *ngIf="sharedMessage!=='BN'"> Transaction ID</span><span *ngIf="sharedMessage==='BN'"> লেনদেনের আইডি</span></option> 
+                        <option value="2"><span *ngIf="sharedMessage!=='BN'"> Date Range</span><span *ngIf="sharedMessage==='BN'"> তারিখের ব্যাপ্তি</span></option>
+                    </select>
+                </div>
+                <div class="col-lg-2" *ngIf="selectedOption === '1'">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1"><span *ngIf="sharedMessage!=='BN'"> Number</span><span *ngIf="sharedMessage==='BN'"> সংখ্যা</span></span> 
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="textInputValue" name="transactionId">
+                      </div>
+                </div>
+                <div class="col-lg-2" *ngIf="selectedOption === '2'">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1"><span *ngIf="sharedMessage!=='BN'"> Start</span><span *ngIf="sharedMessage==='BN'"> শুরু</span></span>
+                        <input type="date" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="startDate" name="startDate" id="startDate">
+                      </div>
+                </div>
+                <div class="col-lg-2" *ngIf="selectedOption === '2'">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1"><span *ngIf="sharedMessage!=='BN'"> End</span><span *ngIf="sharedMessage==='BN'"> পর্যন্ত</span></span>
+                        <input type="date" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="endDate" name="endDate" id="endDate">
+                      </div>
+                </div>   
+                <div class="col-lg-2">
+                    <button type="submit" class="btn btn text-white backColor" ><span *ngIf="sharedMessage!=='BN'"> Search</span><span *ngIf="sharedMessage==='BN'"> খুঁজুন</span></button>
+                </div> 
+            </div>
+        </form>
+    <table class="table table-hover border table-bordered mt-3 ">
+        <thead class="table-primary text-center">
+            <tr>
+                <th><span *ngIf="sharedMessage!=='BN'"> Entry Date</span><span *ngIf="sharedMessage==='BN'"> লেনদেনের তারিখ</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'"> Debit Account</span><span *ngIf="sharedMessage==='BN'"> ডেবিট হিসাব</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'"> Credit Account</span><span *ngIf="sharedMessage==='BN'"> ক্রেডিট হিসাব</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'"> Balance</span><span *ngIf="sharedMessage==='BN'"> ভারসাম্য </span></th>
+                <th><span *ngIf="sharedMessage!=='BN'"> Description</span><span *ngIf="sharedMessage==='BN'"> বিস্তারিত </span></th>
+                <th><span *ngIf="sharedMessage!=='BN'"> Transaction Number</span><span *ngIf="sharedMessage==='BN'"> লেনদেনের ক্রমিক</span></th>    
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr *ngFor="let journal of cashAccountDetails">
+                <th>{{journal.entryDate}}</th>
+                <td>{{journal.debitAmount}}</td>
+                <td>{{journal.creditAmount}}</td>
+                <td>{{journal.balance}}</td>
+                <td>{{journal.description}}</td>
+                <td>{{journal.transaction.id}}</td>
+            </tr>
+        
+        </tbody>
+    </table>
+</div>

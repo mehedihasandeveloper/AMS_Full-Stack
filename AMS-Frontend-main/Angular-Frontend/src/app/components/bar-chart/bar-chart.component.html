@@ -1,0 +1,35 @@
+<div>
+<form class="container" [formGroup]="searchForm" (ngSubmit)="createBarChart()">
+    <div class="row">
+        <div class="col-lg-2">
+         
+            <select class="form-select" aria-label="Default select example" formControlName="endMonth">
+                <option selected><span *ngIf="sharedMessage!=='BN'">Select Type</span><span *ngIf="sharedMessage==='BN'">ধরণ নির্বাচন করুন</span></option> 
+              
+                <option value="1"><span *ngIf="sharedMessage!=='BN'">1st Quarterly</span> <span *ngIf="sharedMessage==='BN'">১ম ত্রৈমাসিক</span></option>
+                <option value="2"><span *ngIf="sharedMessage!=='BN'">Half Yearly</span> <span *ngIf="sharedMessage==='BN'">অর্ধ বার্ষিক</span></option>
+                <option value="3"><span *ngIf="sharedMessage!=='BN'">Yearly</span> <span *ngIf="sharedMessage==='BN'">বার্ষিক</span></option>
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <button type="submit" class="btn btn text-white backColor" *ngIf="sharedMessage!=='BN'">Search</button>
+            <button type="submit" class="btn btn text-white backColor" *ngIf="sharedMessage==='BN'">খুঁজুন</button>
+        </div>
+    </div>
+</form>
+</div>
+<div class="container mt-3">
+    <div class="col-lg-12 col-xl-12">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title mb-0" *ngIf="sharedMessage!=='BN'">Cash Expenditure & Revenue</h5>
+                <h5 class="card-title mb-0" *ngIf="sharedMessage==='BN'">নগদান খরচ এবং আয়</h5>
+            </div>
+            <div class="card-body">
+                <div class="chart-container mt-5">
+                    <canvas id="MyChart">{{ chart }}</canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<h3 class="text-center  mb-3 note text-uppercase" style="font-family: serif;font-weight: 700;font-size: 22px;">
+    
+    <span *ngIf="sharedMessage !== 'BN'"><em>Editing ROLE</em></span
+        ><span *ngIf="sharedMessage === 'BN'"
+          ><em>ভূমিকা পরিবর্তন করুন</em></span
+        >
+</h3>
+<div class="container mb-3">
+    <div class="form">
+        <Form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                            <span *ngIf="sharedMessage !== 'BN'">Role Name</span
+                                ><span *ngIf="sharedMessage === 'BN'"> ভূমিকার নাম</span> 
+                            <input type="text" class="form-control" formControlName="roleName" readonly/>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 mb-3">
+
+                        <div class="form-group">
+                            <span *ngIf="sharedMessage !== 'BN'">Role Description</span
+                                ><span *ngIf="sharedMessage === 'BN'"> ভূমিকা বিবরণ</span> 
+                            <textarea class="form-control" id="roleDescription" rows="3"
+                                formControlName="roleDescription"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <label for="active" class="form-label">
+
+                    <span *ngIf="sharedMessage !== 'BN'">Status</span
+                        ><span *ngIf="sharedMessage === 'BN'"> স্থিতি</span> 
+                </label>
+                <select class="form-select mb-3 form-control" aria-label="Default select example" formControlName="active">
+                  
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                  
+                </select>
+                <div style="text-align: end;">
+                    <button type="submit" class="btnSubmit">
+                        <span *ngIf="sharedMessage !== 'BN'">Submit</span
+                            ><span *ngIf="sharedMessage === 'BN'"> দাখিল করুন</span> 
+                    </button>
+                </div>
+            </div>
+        </Form>
+    </div>
+</div>

@@ -1,0 +1,230 @@
+<h3 class="text-center  mb-3 note text-uppercase" style="font-family: serif;font-weight: 700;font-size: 22px;">
+  <em *ngIf="sharedMessage!=='BN'">Generate Financial Report</em> <em *ngIf="sharedMessage==='BN'">আর্থিক প্রতিবেদন তৈরি করুন</em>
+</h3>
+<!-- <span *ngIf="sharedMessage!=='BN'">Select Type</span><span *ngIf="sharedMessage==='BN'">ধরণ নির্বাচন করুন</span> -->
+<div class="container mt-5">
+
+  <form [formGroup]="journalForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="mb-3 col-sm-6">
+        <label for="exampleInputEmail1" class="form-label" *ngIf="sharedMessage!=='BN'">Select Start Date</label>
+        <label for="exampleInputEmail1" class="form-label" *ngIf="sharedMessage==='BN'">শুরুর তারিখ নির্বাচন করুন</label>
+        <input type="date" class="form-control" id="exampleInputEmail1" formControlName="startDate">
+      </div>
+      <div class="mb-3 col-sm-6">
+        <label for="exampleInputEmail1" class="form-label"  *ngIf="sharedMessage!=='BN'">Select End Date</label>
+        <label for="exampleInputEmail1" class="form-label" *ngIf="sharedMessage==='BN'">শেষ তারিখ নির্বাচন করুন</label>
+        <input type="date" class="form-control" id="exampleInputEmail1" formControlName="endDate">
+      </div>
+
+    </div>
+    <div style="text-align: end;">
+      <button type="submit" class="btn btn-primary"><span *ngIf="sharedMessage!=='BN'">Generate</span><span *ngIf="sharedMessage==='BN'">তৈরি করুন</span></button>
+    </div>
+  </form>
+
+  <!----------------------------------------------------------------------------- Trial Balance ---------------------------------------------------------------------------------->
+  <div class="mt-5 " *ngIf="visibleForm">
+    <a href="javascript:void(0)" onclick="print()" rel="noopener" target="_blank" class="btn btn-default"><i
+      class="fas fa-print"></i><span *ngIf="sharedMessage!=='BN'"> Print</span><span *ngIf="sharedMessage==='BN'"> প্রিন্ট</span></a> 
+    <div class="col-lg-12 col-xl-12 mt-1">
+      <div class="card m-b-30">
+        <div class="card-header backColor">
+          <h5 class="card-title mb-0 text-center text-uppercase text-white"><span *ngIf="sharedMessage!=='BN'">Trial Balance</span><span *ngIf="sharedMessage==='BN'">রেওয়ামিল</span></h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover border table-bordered">
+            <thead class="table-primary text-center">
+              <tr>
+                <th><span *ngIf="sharedMessage!=='BN'">Account Name </span><span *ngIf="sharedMessage==='BN'">হিসাবের নাম</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'">Debit Amount </span><span *ngIf="sharedMessage==='BN'">ডেবিট হিসাব </span></th>
+                <th><span *ngIf="sharedMessage!=='BN'">Credit Amount </span><span *ngIf="sharedMessage==='BN'">ক্রেডিট হিসাব </span></th>
+
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let journal of tbList">
+                <th>{{journal.accountName}}</th>
+                <th>{{journal.debitBalance}}</th>
+                <td>{{journal.creditBalance}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="1" class="text-end">Total</td>
+                <td class="text-center"><b>{{calculateTotalDebit()}}</b></td>
+
+
+                <td class="text-center"><b>{{calculateTotalCredit()}}</b></td>
+              </tr>
+            </tfoot>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <!------------------------------------------------------------------------------ Income Statement -------------------------------------------------------------------------------->
+    <div class="col-lg-12 col-xl-12 mt-5">
+      <div class="card m-b-30">
+        <div class="card-header backColor">
+          <h5 class="card-title mb-0 text-center text-uppercase text-white"><span *ngIf="sharedMessage!=='BN'">Income Statement</span><span *ngIf="sharedMessage==='BN'">আয় বিবৃতি</span></h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover border table-bordered">
+            <thead class="table-primary text-center">
+              <tr>
+                <th><span *ngIf="sharedMessage!=='BN'">Entry Date</span><span *ngIf="sharedMessage==='BN'">তারিখ</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'">Transaction Number</span><span *ngIf="sharedMessage==='BN'">লেনদেন ক্রমিক</span></th> 
+                <th><span *ngIf="sharedMessage!=='BN'">Revenue Balance</span><span *ngIf="sharedMessage==='BN'">আয় হিসাব</span></th> 
+                <th><span *ngIf="sharedMessage!=='BN'">Expense Balance</span><span *ngIf="sharedMessage==='BN'">ব্যয় হিসাব</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'">Balance</span><span *ngIf="sharedMessage==='BN'">ভারসাম্য</span></th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let journal of journalList">
+                <th>{{journal.entryDate}}</th>
+                <th>{{journal.transactionId}}</th>
+                <td>{{journal.revenueBalance}}</td>
+                <td>{{journal.expenseBalance}}</td>
+                <td>{{journal.netIncome}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4" class="text-end"><span *ngIf="sharedMessage!=='BN'">Net Income/Loss</span><span *ngIf="sharedMessage==='BN'">নেট লাভ/ক্ষতি</span></td>
+                <td class="text-center"><b>{{ calculateNetIncomeTotal() }}</b></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!------------------------------------------------------------------------ Owner's Equity Statement ---------------------------------------------------------------------------->
+    <div class="col-lg-12 col-xl-12 mt-5">
+      <div class="card m-b-30">
+        <div class="card-header backColor">
+          <h5 class="card-title mb-0 text-center text-uppercase text-white"><span *ngIf="sharedMessage!=='BN'">Owner's Equity Statement</span><span *ngIf="sharedMessage==='BN'">মালিকানা স্বত্ব বিবৃতি</span></h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover border table-bordered">
+            <thead class="table-primary text-center">
+              <tr>
+                <th><span *ngIf="sharedMessage!=='BN'">Entry Date</span><span *ngIf="sharedMessage==='BN'">তারিখ</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'">Transaction Number</span><span *ngIf="sharedMessage==='BN'">লেনদেনের ক্রমিক</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'">Capital Amount</span><span *ngIf="sharedMessage==='BN'">মূলধন হিসাব </span></th>
+                <th><span *ngIf="sharedMessage!=='BN'">Drawings Amount</span><span *ngIf="sharedMessage==='BN'">উত্তোলন হিসাব</span></th>
+                <th><span *ngIf="sharedMessage!=='BN'">Balance</span><span *ngIf="sharedMessage==='BN'">ভারসাম্য</span></th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let journal of oesList">
+                <th>{{journal.entryDate}}</th>
+                <th>{{journal.transactionId}}</th>
+                <td>{{journal.capitalAmount}}</td>
+                <td>{{journal.drawingsAmount}}</td>
+                <td>{{journal.balance}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4" class="text-end"><span *ngIf="sharedMessage!=='BN'">Net Income/Loss</span><span *ngIf="sharedMessage==='BN'">নেট লাভ/ক্ষতি</span></td>
+                <td class="text-center">{{ calculateNetIncomeTotal() }}</td>
+              </tr>
+              <tr>
+                <td colspan="4" class="text-end"><span *ngIf="sharedMessage!=='BN'">Owner's claim</span><span *ngIf="sharedMessage==='BN'">মালিকের দাবি</span></td>
+                <td class="text-center"><b>{{ calculateTotalOE() + calculateNetIncomeTotal()}}</b></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <!----------------------------------------------------------------------------- Balance Statement ---------------------------------------------------------------------------------->
+      <div class="col-lg-12 col-xl-12 mt-5">
+        <div class="card m-b-30">
+          <div class="card-header backColor">
+            <h5 class="card-title mb-0 text-center text-uppercase text-white"><span *ngIf="sharedMessage!=='BN'">Balance Statement</span><span *ngIf="sharedMessage==='BN'">চূড়ান্ত হিসাব</span></h5> 
+          </div>
+          <div class="card-body">
+            <table class="table table-hover border table-bordered">
+              <thead class="table-primary text-center">
+                <tr>
+                  <th><span *ngIf="sharedMessage!=='BN'">Account Name</span><span *ngIf="sharedMessage==='BN'">হিসাবের নাম</span></th>
+                  <th><span *ngIf="sharedMessage!=='BN'">Assets</span><span *ngIf="sharedMessage==='BN'">সম্পত্তি</span></th>
+                  <th><span *ngIf="sharedMessage!=='BN'">Liabilities & Owner's Equity</span><span *ngIf="sharedMessage==='BN'">মূলধন তহবিল ও দায়</span></th> 
+
+
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <tr *ngFor="let journal of bsList">
+                  <th>{{journal.accountName}}</th>
+                  <th>{{journal.balance}}</th>
+                  <td>{{journal.liabilityBalance}}</td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="1" class="text-end"><span *ngIf="sharedMessage!=='BN'">Total</span><span *ngIf="sharedMessage==='BN'">মোট</span></td>
+                  <td class="text-center"><b>{{calculateTotalAsset()}}</b></td>
+
+
+                  <td class="text-center"><b>{{calculateTotalLE()}}</b></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--------------------------------------------------------------------------- Assets Statement --------------------------------------------------------------------------------->
+  <!-- <div class="container" *ngIf="visibleAssetForm">
+  <hr>
+  <h3 class="text-center mt-3" style="font-family: serif;font-weight: 700;">Assets Statement</h3>
+  <a href="javascript:void(0)" onclick="print()" rel="noopener" target="_blank" class="btn btn-default"><i
+      class="fas fa-print"></i> Print</a>
+  <table class="table table-hover border table-bordered mt-1 ">
+    <thead class="table-primary text-center">
+      <tr>
+        <th>Entry Date</th>
+        <th>Transaction Number</th>
+        <th>Cash Balance</th>
+        <th>Equipment Balance</th>
+        <th>Supplies Balance</th>
+        <th>Receivable Balance</th>
+        <th>Balance</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let journal of journalList">
+        <th>{{journal.entryDate}}</th>
+        <th>{{journal.transactionId}}</th>
+        <td>{{journal.cashBalance}}</td>
+        <td>{{journal.suppliesBalance}}</td>
+        <td>{{journal.equipmentBalance}}</td>
+        <td>{{journal.receivableBalance}}</td>
+        <td>{{journal.totalAsset}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="6" class="text-end">Total Assets:</td>
+        <td class="text-center"><b>{{ calculateTotalAssets() }}</b></td>
+      </tr>
+    </tfoot>
+  </table>
+</div> -->

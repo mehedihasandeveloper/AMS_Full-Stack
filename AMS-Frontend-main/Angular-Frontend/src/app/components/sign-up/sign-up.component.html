@@ -1,0 +1,48 @@
+<h3 class="text-center mb-3 note text-uppercase" style="font-family: serif;font-weight: 700;font-size: 22px;">
+    <span *ngIf="sharedMessage!=='BN'"><em>Create New Account</em></span><span *ngIf="sharedMessage==='BN'"><em>নতুন ব্যবহারকারী তৈরি করুন</em></span>
+</h3>
+<div class="container mt-5">
+    <div class="form">
+       
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <div class="form-outline mb-4 mt-3">
+                <label class="form-label" for="fname">
+                    <span *ngIf="sharedMessage!=='BN'">First Name</span><span *ngIf="sharedMessage==='BN'">নামের প্রথম অংশ</span>
+                </label>
+                <input type="text" id="fname" class="form-control form-control-lg" formControlName="userFirstName"/>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="lname">
+                                     <span *ngIf="sharedMessage!=='BN'">Last Name</span><span *ngIf="sharedMessage==='BN'">নামের শেষাংশ </span>
+                </label>
+                <input type="text" id="lname" class="form-control form-control-lg" formControlName="userLastName"/>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="uname">
+                    <span *ngIf="sharedMessage!=='BN'">Username</span><span *ngIf="sharedMessage==='BN'">ইউজার নেম </span>
+                </label>
+                <input type="text" id="uname" class="form-control form-control-lg" formControlName="username" />
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="email">
+                <span *ngIf="sharedMessage!=='BN'">Your Email</span><span *ngIf="sharedMessage==='BN'">ইমেইল </span>
+            </label>
+                <input type="email" id="email" class="form-control form-control-lg" formControlName="email" />
+            </div>
+
+            <div class="form-outline mb-5">
+                <label class="form-label" for="password">
+                    <span *ngIf="sharedMessage!=='BN'">Password</span><span *ngIf="sharedMessage==='BN'">পাসওয়ার্ড </span>
+                </label>
+
+                <input type="password" id="password" class="form-control form-control-lg" formControlName="password" />
+            </div>
+
+            <div style="text-align: end;">
+                <button type="submit" class="btnSubmit">
+                    <span *ngIf="sharedMessage!=='BN'">Register</span><span *ngIf="sharedMessage==='BN'">নিবন্ধন করুন </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

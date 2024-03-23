@@ -1,0 +1,48 @@
+
+  
+    <h3 class="text-center  mb-3 note text-uppercase" style="font-family: serif;font-weight: 700;font-size: 22px;">
+        <span *ngIf="sharedMessage !== 'BN'"><em>Roles List</em></span
+            ><span *ngIf="sharedMessage === 'BN'"
+              ><em>ভূমিকা তালিকা</em></span
+            >
+    </h3>
+    <div class="container">
+    <a href="javascript:void(0)" onclick="print()" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i>  <span *ngIf="sharedMessage !== 'BN'"> Print</span
+        ><span *ngIf="sharedMessage === 'BN'"> প্রিন্ট</span></a>
+    <table class="table table-hover border table-bordered mt-3 ">
+        <thead class="table-primary text-center">
+            <tr>
+                <th><span *ngIf="sharedMessage !== 'BN'">Role Name</span
+                    ><span *ngIf="sharedMessage === 'BN'"> ভূমিকার নাম</span> </th>
+                <th> <span *ngIf="sharedMessage !== 'BN'">Role Description</span
+                    ><span *ngIf="sharedMessage === 'BN'"> ভূমিকা বিবরণ</span></th>
+                    <th>                    
+                        <span *ngIf="sharedMessage!=='BN'"> Status</span><span *ngIf="sharedMessage==='BN'"> স্থিতি </span>
+                    </th> 
+                <th>                    
+                    <span *ngIf="sharedMessage!=='BN'"> Action</span><span *ngIf="sharedMessage==='BN'"> ক্রিয়া </span>
+                </th> 
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr *ngFor="let journal of journalList">
+                <th>{{journal.roleName}}</th>
+                <th>{{journal.roleDescription}}</th>
+                <th>
+                    <span *ngIf="journal.active">Active</span>
+                    <span *ngIf="!journal.active">Inactive</span>
+                  </th>
+                <td>
+                    <a type="button" class="btn btn-primary me-1" [routerLink]="['/editRole/', journal.roleName]">
+                        <span *ngIf="sharedMessage!=='BN'"> Edit </span><span *ngIf="sharedMessage==='BN'"> পরিবর্তন করুন </span> 
+
+                    </a> 
+                        <!-- <button type="button" class="btn btn-danger"> 
+                            <span *ngIf="sharedMessage!=='BN'"> Delete  </span><span *ngIf="sharedMessage==='BN'"> মুছে ফেলুন </span>
+                        </button> -->
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+</div>

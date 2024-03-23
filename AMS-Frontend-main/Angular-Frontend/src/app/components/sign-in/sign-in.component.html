@@ -1,0 +1,65 @@
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+
+
+
+
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(220, 95%, 14%)">
+                    AMS <br />
+                    <span style="color: hsl(218, 46%, 49%)">Accounting Management System</span>
+                </h1>
+                <p class="mb-4 opacity-70" style="color: hsl(219, 52%, 34%)">
+                    Able to collect, store, and process the financial and accounting data used by internal users to report information to investors, creditors, and tax authorities. Computer-based method for tracking accounting activity in conjunction with information technology resources. AMS combines traditional accounting practices, such as the use of Generally Accepted Accounting Principles (GAAP), with modern information technology resources.
+
+          </p>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+                <div class="card bg-glass">
+                    <div class="card-body px-4 py-5 px-md-5">
+                        <form *ngIf="!isLoggedIn"
+                        name="form"
+                        (ngSubmit)="onSubmit()"
+                        #f="ngForm"
+                        novalidate
+                        >
+                           
+
+
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="text" name="username" class="form-control" [(ngModel)]="form.username"/>
+                                <label class="form-label" for="form3Example3">User Name</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" name="password" class="form-control" 
+                                [(ngModel)]="form.password"/>
+                                <label class="form-label" for="form3Example4">Password</label>
+                            </div>
+
+
+
+                            <!-- Submit button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block mb-4 ">
+                                    Sign in
+                                </button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section: Design Block -->
+<!-- Section: Design Block -->

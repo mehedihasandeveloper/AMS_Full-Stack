@@ -1,0 +1,61 @@
+.bdSidebar {
+  // background: linear-gradient(to bottom, #007bff, #0056b3); /* Gradient from blue (#007bff) to darker blue (#0056b3) */
+  background: -webkit-linear-gradient(top, #0072ff, #8811c5);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #0072ff, #8811c5);
+  /* Replace these colors with your desired gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 26px;
+  font-family: 'Courier New' Courier, monospace;
+  font-weight: 700;
+
+  @media screen and (max-width: 769px) {
+    font-size: 24px;
+    /* Adjust the font size for screens up to 769px */
+  }
+
+  @media screen and (max-width: 749px) {
+    font-size: 22px;
+    /* Adjust the font size for screens up to 759px */
+  }
+
+  @media screen and (max-width: 693px) {
+    font-size: 18px;
+    /* Adjust the font size for screens between 760px and 768px */
+  }
+
+  @media screen and (max-width: 661px) {
+    font-size: 18px;
+    /* Adjust the font size for screens between 760px and 768px */
+  }
+
+  @media screen and (max-width: 478px) {
+    font-size: 14px;
+    /* Adjust the font size for screens between 760px and 768px */
+  }
+  
+}
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.language-switch span {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.language-switch span:hover {
+  background-color: #ddd;
+}
+

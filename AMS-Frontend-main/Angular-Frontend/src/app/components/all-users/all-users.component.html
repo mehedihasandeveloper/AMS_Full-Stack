@@ -1,0 +1,63 @@
+<h3
+  class="text-center mb-3 note text-uppercase"
+  style="font-family: serif; font-weight: 700; font-size: 22px"
+>
+  <span *ngIf="sharedMessage !== 'BN'"><em>Active Users List</em></span
+  ><span *ngIf="sharedMessage === 'BN'"
+    ><em>সক্রিয় ব্যবহারকারীদের তালিকা</em></span
+  >
+</h3>
+<div class="container">
+  <a
+    href="javascript:void(0)"
+    onclick="print()"
+    rel="noopener"
+    target="_blank"
+    class="btn btn-default"
+    ><i class="fas fa-print"></i>
+    <span *ngIf="sharedMessage !== 'BN'">Print</span
+    ><span *ngIf="sharedMessage === 'BN'"> প্রিন্ট</span>
+  </a>
+  <table class="table table-hover border table-bordered mt-3">
+    <thead class="table-primary text-center">
+      <tr>
+        <th>
+          <span *ngIf="sharedMessage !== 'BN'">Username </span
+          ><span *ngIf="sharedMessage === 'BN'"> ইউজার নেম</span>
+        </th>
+        <th>
+          <span *ngIf="sharedMessage !== 'BN'">Email </span
+          ><span *ngIf="sharedMessage === 'BN'"> ইমেইল</span>
+        </th>
+        <th>
+          <span *ngIf="sharedMessage !== 'BN'">First Name </span
+          ><span *ngIf="sharedMessage === 'BN'"> নামের প্রথম অংশ</span>
+        </th>
+        <th>
+          <span *ngIf="sharedMessage !== 'BN'">Last Name </span
+          ><span *ngIf="sharedMessage === 'BN'"> নামের শেষাংশ</span>
+        </th>
+        <th>
+          <span *ngIf="sharedMessage !== 'BN'">Role</span
+          ><span *ngIf="sharedMessage === 'BN'"> ভূমিকা</span>
+        </th>
+        <!-- <th>Description</th> -->
+        <!-- <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let journal of journalList">
+        <th>{{ journal.username }}</th>
+        <th>{{ journal.email }}</th>
+        <td>{{ journal.userFirstName }}</td>
+        <td>{{ journal.userLastName }}</td>
+        <td>{{ journal.roles }}</td>
+
+        <!-- <td>
+                    <a type="button" class="btn btn-primary me-1" [routerLink]="['/edit/', journal.id]">Edit </a> 
+                        <button type="button" class="btn btn-danger" (click)="delete(journal.username)"> Delete</button>
+                </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

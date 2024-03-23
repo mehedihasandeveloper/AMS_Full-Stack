@@ -1,0 +1,71 @@
+
+    <h3 class="text-center  mb-3 note text-uppercase" style="font-family: serif;font-weight: 700;font-size: 22px;">
+        <em *ngIf="sharedMessage!=='BN'">Add New Transaction</em><em *ngIf="sharedMessage==='BN'">নতুন লেনদেন অন্তর্ভুক্তকরণ</em>
+    </h3>
+
+<div class="container">
+    <form [formGroup]="journalForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3 mt-5">
+            <label for="username" class="form-label"><span *ngIf="sharedMessage!=='BN'">User Name</span><span *ngIf="sharedMessage==='BN'">ব্যবহারকারীর নাম</span></label>
+            <input type="text" class="form-control" id="entryDate"  placeholder="{{username}}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="entryDate" class="form-label"><span *ngIf="sharedMessage!=='BN'">Entry Date</span><span *ngIf="sharedMessage==='BN'">তারিখ</span></label>
+            <input type="date" class="form-control" id="entryDate" formControlName="entryDate">
+        </div>
+        <div class="mb-3">
+            <label for="amount" class="form-label"><span *ngIf="sharedMessage!=='BN'">Amount</span><span *ngIf="sharedMessage==='BN'">মোট পরিমাণ</span></label>
+            <input type="number" class="form-control" id="amount" formControlName="amount">
+        </div>
+        <div class="mb-3">
+            <label for="increasedAccount" class="form-label"><span *ngIf="sharedMessage!=='BN'">Debit Account</span><span *ngIf="sharedMessage==='BN'">ডেবিট হিসাব</span></label>
+            <select class="form-select form-select-md" formControlName="debitAccount">
+                <option selected><span *ngIf="sharedMessage!=='BN'">Select one</span><span *ngIf="sharedMessage==='BN'">একটি নির্বাচন করুন</span></option> 
+                <option value="cash"><span *ngIf="sharedMessage!=='BN'">Cash Account</span><span *ngIf="sharedMessage==='BN'">নগদান হিসাব</span></option>
+                <option value="receivableaccount"><span *ngIf="sharedMessage!=='BN'">Receivable Account</span><span *ngIf="sharedMessage==='BN'">প্রাপ্য হিসাব</span></option>
+                <option value="EquipmentAccount"><span *ngIf="sharedMessage!=='BN'">Equipment Account</span><span *ngIf="sharedMessage==='BN'">যন্ত্রপাতি হিসাব</span></option>
+                <option value="SuppliesAccount"><span *ngIf="sharedMessage!=='BN'">Supplies Account</span><span *ngIf="sharedMessage==='BN'">সরবরাহ হিসাব</span></option> 
+                <option value="ExpenseAccount"><span *ngIf="sharedMessage!=='BN'">Expense Account</span><span *ngIf="sharedMessage==='BN'">ব্যয় হিসাব</span></option>
+                <option value="OwnerDrawings"><span *ngIf="sharedMessage!=='BN'">Owner's Drawings</span><span *ngIf="sharedMessage==='BN'">উত্তোলন হিসাব</span></option>
+                <option value="PayableAccount"><span *ngIf="sharedMessage!=='BN'">Payable Account</span><span *ngIf="sharedMessage==='BN'">প্রদেয় হিসাব</span></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="decreasedAccount" class="form-label"><span *ngIf="sharedMessage!=='BN'">Credit Account</span><span *ngIf="sharedMessage==='BN'">ক্রেডিট হিসাব</span></label>
+            <select class="form-select form-select-md" formControlName="creditAccount">
+                <option selected><span *ngIf="sharedMessage!=='BN'">Select one</span><span *ngIf="sharedMessage==='BN'">একটি নির্বাচন করুন</span></option>
+                <option value="cash"><span *ngIf="sharedMessage!=='BN'">Cash Account</span><span *ngIf="sharedMessage==='BN'">নগদান হিসাব</span></option>
+                <option value="receivableaccount"><span *ngIf="sharedMessage!=='BN'">Receivable Account</span><span *ngIf="sharedMessage==='BN'">প্রাপ্য হিসাব</span></option>
+                <option value="EquipmentAccount"><span *ngIf="sharedMessage!=='BN'">Equipment Account</span><span *ngIf="sharedMessage==='BN'">যন্ত্রপাতি হিসাব</span></option>
+                <option value="SuppliesAccount"><span *ngIf="sharedMessage!=='BN'">Supplies Account</span><span *ngIf="sharedMessage==='BN'">সরবরাহ হিসাব</span></option> 
+                <option value="RevenueAccount"><span *ngIf="sharedMessage!=='BN'">Revenue Account</span><span *ngIf="sharedMessage==='BN'">আয় হিসাব</span></option>
+                <option value="OwnerCapital"><span *ngIf="sharedMessage!=='BN'">Owner's Capital</span><span *ngIf="sharedMessage==='BN'">মালিকের মূলধন হিসাব</span></option>
+                <option value="PayableAccount"><span *ngIf="sharedMessage!=='BN'">Payable Account</span><span *ngIf="sharedMessage==='BN'">প্রদেয় হিসাব</span></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">
+                <span *ngIf="sharedMessage!=='BN'">Description</span><span *ngIf="sharedMessage==='BN'">বিস্তারিত</span>
+            </label>
+            <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+        </div>
+        <div class="mb-4">
+
+            <input type="file" multiple (change)="selectFiles($event)" class="mt-2" /><br><br>
+            <!-- <button type="button" class="btn btn-secondary" >Upload File</button> -->
+
+
+
+        </div>
+        <div style="text-align: end;" class="mt-3">
+            <button type="reset" class="btn btn-danger" style="margin-right: 6px;">
+                <span *ngIf="sharedMessage!=='BN'">Clear</span><span *ngIf="sharedMessage==='BN'">ফর্ম পরিষ্কার করুন</span>
+            </button>
+            <button type="submit" class="btn btn-primary">
+                <span *ngIf="sharedMessage!=='BN'">Submit</span><span *ngIf="sharedMessage==='BN'">দাখিল করুন</span>
+
+            </button>
+        </div>
+    </form>
+</div>
